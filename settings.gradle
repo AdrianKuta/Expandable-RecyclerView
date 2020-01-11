@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':expandable-recyclerview'
 rootProject.name='Expandable RecyclerView'
