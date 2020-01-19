@@ -3,24 +3,34 @@ package com.github.adriankuta.expandable_recyclerview
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class MultilevelRecyclerViewAdapter<T, VH: RecyclerView.ViewHolder>: RecyclerView.Adapter<VH>() {
+abstract class MultilevelRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder> :
+    RecyclerView.Adapter<VH>() {
 
-    abstract fun getExpandableGroups(): ExpandableGroup<T>
+    private lateinit var treeNodes: ExpandableTreeNode<T>
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    abstract override fun onCreateViewHolder(parent: ViewGroup, nestLevel: Int): VH
+
+    final override fun onBindViewHolder(holder: VH, position: Int) {
+        onBindViewHolder(holder, treeNodes.getVisibleNode(position))
     }
 
-    override fun getItemCount(): Int {
-        getExpandableGroups().toList()
-        return getExpandableGroups().nodeCount()
+    abstract fun onBindViewHolder(holder: VH, treeNode: ExpandableTreeNode<T>)
+
+    abstract fun getTreeNodes(): ExpandableTreeNode<T>
+
+    final override fun getItemCount(): Int {
+        treeNodes = getTreeNodes()
+        return treeNodes.getVisibleNodeCount()
     }
 
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    final override fun getItemViewType(position: Int): Int {
+
+        return treeNodes.getVisibleNode(position).depth()
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
+    fun toggleGroup(expandableTreeNode: ExpandableTreeNode<T>) {
+        expandableTreeNode.expanded = !expandableTreeNode.expanded
+        notifyDataSetChanged()
     }
 }
