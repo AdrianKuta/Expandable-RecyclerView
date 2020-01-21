@@ -7,11 +7,12 @@ class ExpandableTreeNode<T>(value: T) : TreeNode<T>(value) {
 
     var expanded: Boolean = true
 
-    override fun child(child: T, childDeclaration: ChildDeclaration<T>?) {
-        val newChild = ExpandableTreeNode(child)
+    override fun child(value: T, childDeclaration: ChildDeclaration<T>?) : ExpandableTreeNode<T> {
+        val newChild = ExpandableTreeNode(value)
         if (childDeclaration != null)
             newChild.childDeclaration()
         addChild(newChild)
+        return newChild
     }
 
     /**
@@ -53,7 +54,7 @@ class ExpandableTreeNode<T>(value: T) : TreeNode<T>(value) {
     /**
      * @return List of nodes which parent or higher ancestor aren't collapsed.
      */
-    private fun onlyVisibleItems(): List<ExpandableTreeNode<T>> {
+    fun onlyVisibleItems(): List<ExpandableTreeNode<T>> {
         //Visible if parent of node is expanded.
         return map { it as ExpandableTreeNode }
             .filter { allAncestorsAreExpanded(it) }
@@ -64,7 +65,7 @@ class ExpandableTreeNode<T>(value: T) : TreeNode<T>(value) {
      * @return `True` if parent, and all parent's ancestors are expanded.
      */
     private fun allAncestorsAreExpanded(node: ExpandableTreeNode<T>): Boolean {
-        var ancestor = parent as? ExpandableTreeNode
+        var ancestor = node.parent as? ExpandableTreeNode
         var ancestorsAreExpanded = isAncestorExpanded(ancestor)
 
         while (ancestorsAreExpanded && ancestor != null) {
