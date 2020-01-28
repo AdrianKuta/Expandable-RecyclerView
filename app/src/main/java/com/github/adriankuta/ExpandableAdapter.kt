@@ -1,6 +1,5 @@
 package com.github.adriankuta
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,39 +37,49 @@ class ExpandableAdapter :
         treeNode: ExpandableTreeNode<String>,
         nestLevel: Int
     ) {
-        holder.bind(treeNode, nestLevel)
+        holder.bind(treeNode) {
+            toggleGroup(it)
+        }
     }
 
-    sealed class ExpandableViewHolder(val itemView: View) : RecyclerView.ViewHolder(itemView) {
+    sealed class ExpandableViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         class Level1(private val binding: ItemLevel1Binding) : ExpandableViewHolder(binding.root) {
-            override fun bind(node: ExpandableTreeNode<String>, nestLevel: Int) {
+            override fun bind(
+                node: ExpandableTreeNode<String>,
+                onClickListener: ((ExpandableTreeNode<String>) -> Unit)?
+            ) {
                 binding.node = node
+                binding.root.setOnClickListener { onClickListener?.invoke(node) }
             }
         }
 
         class Level2(private val binding: ItemLevel2Binding) : ExpandableViewHolder(binding.root) {
-            override fun bind(node: ExpandableTreeNode<String>, nestLevel: Int) {
+            override fun bind(
+                node: ExpandableTreeNode<String>,
+                onClickListener: ((ExpandableTreeNode<String>) -> Unit)?
+            ) {
                 binding.node = node
-                binding.isLastItem = isLastItem(node)
+                binding.root.setOnClickListener { onClickListener?.invoke(node) }
             }
         }
 
         class Level3(private val binding: ItemLevel3Binding) : ExpandableViewHolder(binding.root) {
-            override fun bind(node: ExpandableTreeNode<String>, nestLevel: Int) {
+            override fun bind(
+                node: ExpandableTreeNode<String>,
+                onClickListener: ((ExpandableTreeNode<String>) -> Unit)?
+            ) {
                 binding.node = node
-                binding.isLastItem = isLastItem(node)
+                binding.root.setOnClickListener { onClickListener?.invoke(node) }
             }
         }
 
-        abstract fun bind(node: ExpandableTreeNode<String>, nestLevel: Int)
 
-        fun isLastItem(node: ExpandableTreeNode<String>): Boolean {
-            val parent = node.parent ?: throw IllegalArgumentException("This node hasn't parent")
-            val childrenSize = parent.children.size
-            Log.d("DEBUG_TAG", node.value)
-            return parent.children[childrenSize - 1] == node
-        }
+        abstract fun bind(
+            node: ExpandableTreeNode<String>,
+            onClickListener: ((ExpandableTreeNode<String>) -> Unit)? = null
+        )
+
     }
 
     private fun ViewGroup.inflateLevel1(): ItemLevel1Binding {

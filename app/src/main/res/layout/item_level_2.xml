@@ -3,12 +3,10 @@
 
     <data>
         <variable
-            name="isLastItem"
-            type="Boolean" />
-        <variable
             name="node"
             type="com.github.adriankuta.expandable_recyclerview.ExpandableTreeNode&lt;String>" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,36 +16,29 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/tree_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@{isLastItem ? @drawable/ic_last_element : @drawable/ic_middle_element}"
-            tools:src="@drawable/ic_last_element"
-            android:tint="@color/colorAccent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
             android:id="@+id/expand_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="24dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
             android:scaleType="centerInside"
-            android:visibility="@{node.children.empty ? View.GONE : View.VISIBLE}"
             android:src="@{node.expanded ? @drawable/ic_expand_more_black_24dp : @drawable/ic_expand_less_black_24dp}"
-            tools:src="@drawable/ic_expand_less_black_24dp"
-            app:layout_constraintStart_toEndOf="@id/tree_icon"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="@{node.children.empty ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textView"
+            tools:src="@drawable/ic_expand_less_black_24dp" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
-            android:text="@{node.value}"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:padding="8dp"
+            android:text="@{node.value}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/expand_icon"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginStart="48dp"
             tools:text="@tools:sample/full_names" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

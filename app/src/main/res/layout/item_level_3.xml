@@ -2,11 +2,6 @@
 <layout>
 
     <data>
-
-        <variable
-            name="isLastItem"
-            type="Boolean" />
-
         <variable
             name="node"
             type="com.github.adriankuta.expandable_recyclerview.ExpandableTreeNode&lt;String>" />
@@ -21,40 +16,24 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/line"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_vertical_line"
-            android:tint="@color/colorAccent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/tree_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@{isLastItem ? @drawable/ic_last_element : @drawable/ic_middle_element}"
-            android:tint="@color/colorAccent"
-            app:layout_constraintStart_toEndOf="@id/line"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_last_element" />
-
-        <ImageView
             android:id="@+id/expand_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="24dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="48dp"
             android:scaleType="centerInside"
             android:src="@{node.expanded ? @drawable/ic_expand_more_black_24dp : @drawable/ic_expand_less_black_24dp}"
             android:visibility="@{node.children.empty ? View.GONE : View.VISIBLE}"
-            app:layout_constraintStart_toEndOf="@id/tree_icon"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textView"
             tools:src="@drawable/ic_expand_less_black_24dp" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:padding="8dp"
+            app:layout_goneMarginStart="96dp"
             android:text="@{node.value}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -4,8 +4,11 @@
 [![License](https://img.shields.io/github/license/AdrianKuta/Expandable-RecyclerView?style=plastic)](https://github.com/AdrianKuta/Expandable-RecyclerView/blob/master/LICENSE)
 [![CircleCI](https://img.shields.io/circleci/build/github/AdrianKuta/Expandable-RecyclerView/master?label=CircleCI&style=plastic&logo=circleci)](https://circleci.com/gh/AdrianKuta/Expandable-RecyclerView)
 
-Library is currently during implementation! It is **not** ready to use yet :/
+<img src="https://github.com/AdrianKuta/Expandable-RecyclerView/blob/master/Demo.gif" width="720" />
 
-Final version will be released soon.
+This RecyclerViewAdapter use Tree(Data Structure) to keep all objects.
+## Download
 
-![Release date](https://img.shields.io/date/1580493319?label=Expected%20release&style=for-the-badge)
+    implementation "com.github.adriankuta:expandable-recyclerView:$latest_versions"
+    
+   
