@@ -6,7 +6,7 @@ import com.github.adriankuta.datastructure.tree.ChildDeclaration
 @JvmSynthetic
 inline fun <reified T> expandableTree(
     value: T,
-    childDeclaration: ChildDeclaration<T>
+    childDeclaration: ChildDeclaration<T> = {}
 ): ExpandableTreeNode<T> {
     val treeNode = ExpandableTreeNode(value)
     treeNode.childDeclaration()

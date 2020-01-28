@@ -3,7 +3,7 @@ package com.github.adriankuta.expandable_recyclerview
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class MultilevelRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder> :
+abstract class ExpandableRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder> :
     RecyclerView.Adapter<VH>() {
 
     private lateinit var treeNodes: ExpandableTreeNode<T>
