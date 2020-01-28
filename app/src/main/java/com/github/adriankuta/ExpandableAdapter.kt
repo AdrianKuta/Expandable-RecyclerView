@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.adriankuta.databinding.ItemLevel1Binding
 import com.github.adriankuta.databinding.ItemLevel2Binding
 import com.github.adriankuta.databinding.ItemLevel3Binding
+import com.github.adriankuta.expandable_recyclerview.ExpandableRecyclerViewAdapter
 import com.github.adriankuta.expandable_recyclerview.ExpandableTreeNode
-import com.github.adriankuta.expandable_recyclerview.MultilevelRecyclerViewAdapter
 import com.github.adriankuta.expandable_recyclerview.expandableTree
 
 class ExpandableAdapter :
-    MultilevelRecyclerViewAdapter<String, ExpandableAdapter.ExpandableViewHolder>() {
+    ExpandableRecyclerViewAdapter<String, ExpandableAdapter.ExpandableViewHolder>() {
 
     private var tree: ExpandableTreeNode<String>? = null
 
@@ -21,7 +21,7 @@ class ExpandableAdapter :
         notifyDataSetChanged()
     }
 
-    override fun getTreeNodes(): ExpandableTreeNode<String> = tree ?: expandableTree("") {}
+    override fun getTreeNodes(): ExpandableTreeNode<String> = tree ?: expandableTree("")
 
     override fun onCreateViewHolder(parent: ViewGroup, nestLevel: Int): ExpandableViewHolder {
         return when (nestLevel) {
@@ -51,6 +51,7 @@ class ExpandableAdapter :
             ) {
                 binding.node = node
                 binding.root.setOnClickListener { onClickListener?.invoke(node) }
+                binding.executePendingBindings()
             }
         }
 
@@ -61,6 +62,7 @@ class ExpandableAdapter :
             ) {
                 binding.node = node
                 binding.root.setOnClickListener { onClickListener?.invoke(node) }
+                binding.executePendingBindings()
             }
         }
 
@@ -71,6 +73,7 @@ class ExpandableAdapter :
             ) {
                 binding.node = node
                 binding.root.setOnClickListener { onClickListener?.invoke(node) }
+                binding.executePendingBindings()
             }
         }
 
