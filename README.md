@@ -5,7 +5,9 @@
 [![CircleCI](https://img.shields.io/circleci/build/github/AdrianKuta/Expandable-RecyclerView/master?label=CircleCI&style=plastic&logo=circleci)](https://circleci.com/gh/AdrianKuta/Expandable-RecyclerView)
 
 With this adapter you can add expand feature to regular RecyclerView.
+
 All objects are store in [Tree (Data structure)](https://github.com/AdrianKuta/Tree-Data-Structure), so adapter can create multilevel expandable groups.
+
 Under the hood, the tree is flattened to simple list, so from RecyclerView's point of view it can operate as usual.
 
 
@@ -16,8 +18,8 @@ Under the hood, the tree is flattened to simple list, so from RecyclerView's poi
     implementation "com.github.adriankuta:expandable-recyclerView:$latest_versions"
     
 ## Usage
-To use expandable adapter we just have to expand our Adapter class with `ExpandableRecyclerViewAdapter<T, VH>`
-Where `T` is data type on which adapter will operate, `VH` is ViewHolder type.
+To use expandable adapter we just have to expand our Adapter class with `ExpandableRecyclerViewAdapter<T, VH>`,
+where `T` is data type on which adapter will operate, `VH` is ViewHolder type.
 
 ```kotlin
 class ExpandableAdapter: ExpandableRecyclerViewAdapter<String, RecyclerView.ViewHolder>() {
@@ -100,4 +102,5 @@ Full example of this library is available in app module.
 
 Project is still during development and improvements.
 Issues with BUGs or suggestions are welcome.
+
 Also please feel free to fork library and contribute to project! ;-)
