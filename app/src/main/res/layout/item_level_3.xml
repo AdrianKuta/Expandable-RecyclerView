@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
             name="node"
             type="com.github.adriankuta.expandable_recyclerview.ExpandableTreeNode&lt;String>" />
@@ -13,7 +14,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:viewBindingIgnore="true">
 
         <ImageView
             android:id="@+id/expand_icon"
@@ -33,12 +35,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            app:layout_goneMarginStart="96dp"
             android:text="@{node.value}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/expand_icon"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginStart="96dp"
             tools:text="@tools:sample/full_names" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
