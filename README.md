@@ -2,7 +2,7 @@
 
 [![maven](https://img.shields.io/maven-central/v/com.github.adriankuta/expandable-recyclerView?style=plastic)](https://mvnrepository.com/artifact/com.github.adriankuta/expandable-recyclerView)
 [![License](https://img.shields.io/github/license/AdrianKuta/Expandable-RecyclerView?style=plastic)](https://github.com/AdrianKuta/Expandable-RecyclerView/blob/master/LICENSE)
-[![CircleCI](https://img.shields.io/circleci/build/github/AdrianKuta/Expandable-RecyclerView/master?label=CircleCI&style=plastic&logo=circleci)](https://circleci.com/gh/AdrianKuta/Expandable-RecyclerView)
+[![Publish](https://github.com/AdrianKuta/Expandable-RecyclerView/actions/workflows/publish.yml/badge.svg)](https://github.com/AdrianKuta/Expandable-RecyclerView/actions/workflows/publish.yml)
 
 With this adapter you can add expand feature to regular RecyclerView.
 
