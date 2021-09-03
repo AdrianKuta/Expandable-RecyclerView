@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - master
+      - develop
 
 jobs:
   build:
@@ -17,7 +18,10 @@ jobs:
         with:
           distribution: adopt
           java-version: 11
+      # Builds the release artifacts
+      - name: Build project
+        run: ./gradlew assemble
 
-        # Builds the release artifacts of the library
-      - name: Test
+      # Run tests
+      - name: Run tests
         run: ./gradlew test
