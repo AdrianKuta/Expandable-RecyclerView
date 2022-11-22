@@ -7,7 +7,7 @@ class ExpandableTreeNode<T>(value: T) : TreeNode<T>(value) {
 
     var expanded: Boolean = true
 
-    override fun child(value: T, childDeclaration: ChildDeclaration<T>?) : ExpandableTreeNode<T> {
+    override fun child(value: T, childDeclaration: ChildDeclaration<T>?): ExpandableTreeNode<T> {
         val newChild = ExpandableTreeNode(value)
         if (childDeclaration != null)
             newChild.childDeclaration()
