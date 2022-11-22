@@ -9,23 +9,24 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val tree = expandableTree("World") {
-            child("North America") {
-                child("USA")
+        val tree = expandableTree(Region("World")) {
+            child(Region("North America")) {
+                child(Region("USA"))
             }
-            child("Europe") {
-                child("Poland") {
-                    child("Warsaw")
+            child(Region("Europe")) {
+                child(Region("Poland")) {
+                    child(Region("Warsaw"))
                 }
-                child("Germany")
+                child(Region("Germany"))
             }
-            child("Asia") {
-                child("China")
+            child(Region("Asia")) {
+                child(Region("China"))
             }
         }
 
