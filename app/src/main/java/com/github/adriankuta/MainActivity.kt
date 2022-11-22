@@ -2,8 +2,6 @@ package com.github.adriankuta
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.github.adriankuta.databinding.ActivityMainBinding
 import com.github.adriankuta.expandable_recyclerview.expandableTree
 
@@ -13,8 +11,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val tree = expandableTree("World") {
             child("North America") {
@@ -31,12 +29,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        with(binding) {
-            val adapter = ExpandableAdapter()
-            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
-            recyclerView.adapter = adapter
-
-            adapter.setTree(tree)
-        }
+        val adapter = ExpandableAdapter()
+        binding.recyclerView.adapter = adapter
+        adapter.setTree(tree)
     }
 }
